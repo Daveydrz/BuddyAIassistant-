@@ -76,22 +76,37 @@ def load_known_users():
         return False
 
 def convert_numpy_for_json(obj):
-    """Convert numpy types to JSON-serializable types recursively"""
+    """Convert numpy types to JSON-serializable types recursively with improved error handling"""
     import numpy as np
     
-    if isinstance(obj, np.ndarray):
-        return obj.tolist()
-    elif isinstance(obj, (np.int8, np.int16, np.int32, np.int64)):
-        return int(obj)
-    elif isinstance(obj, (np.float16, np.float32, np.float64)):
-        return float(obj)
-    elif isinstance(obj, (np.bool_, np.bool8)):
-        return bool(obj)
-    elif isinstance(obj, dict):
-        return {k: convert_numpy_for_json(v) for k, v in obj.items()}
-    elif isinstance(obj, (list, tuple)):
-        return [convert_numpy_for_json(item) for item in obj]
-    else:
+    try:
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, (np.int8, np.int16, np.int32, np.int64)):
+            return int(obj)
+        elif isinstance(obj, (np.float16, np.float32, np.float64)):
+            return float(obj)
+        elif isinstance(obj, np.bool_):  # Fixed: np.bool8 doesn't exist, use np.bool_
+            return bool(obj)
+        elif isinstance(obj, dict):
+            return {k: convert_numpy_for_json(v) for k, v in obj.items()}
+        elif isinstance(obj, (list, tuple)):
+            return [convert_numpy_for_json(item) for item in obj]
+        else:
+            return obj
+    except Exception as e:
+        print(f"[DEBUG] ⚠️ Error converting object {type(obj)}: {e}")
+        # Fallback: try basic conversion or return as-is
+        if hasattr(obj, 'tolist') and callable(getattr(obj, 'tolist')):
+            try:
+                return obj.tolist()
+            except:
+                pass
+        elif hasattr(obj, 'item') and callable(getattr(obj, 'item')):
+            try:
+                return obj.item()
+            except:
+                pass
         return obj
 
 def save_known_users():
