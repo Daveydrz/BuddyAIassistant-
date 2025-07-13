@@ -1,0 +1,41 @@
+{
+  "latitude": -26.7539,
+  "longitude": 153.1211,
+  "house_number": "",
+  "street_name": "",
+  "street_address": "",
+  "suburb": "Birtinya",
+  "district": "Sunshine Coast",
+  "city": "Sunshine Coast",
+  "state": "Queensland",
+  "country": "Australia",
+  "postal_code": "4575",
+  "region": "Oceania",
+  "county": "Sunshine Coast Regional Council",
+  "timezone": "Australia/Brisbane",
+  "timezone_offset": "+10:00",
+  "current_time": "2025-07-06 15:25:59",
+  "public_ip": "birtinya-manual",
+  "local_ip": "auto-detect",
+  "isp": "Manual Setup - Birtinya",
+  "accuracy_meters": 100.0,
+  "source": "MANUAL_BIRTINYA",
+  "confidence": "MANUAL_HIGH",
+  "timestamp": "2025-07-06T15:24:32+10:00",
+  "user": "Daveydrz",
+  "detection_method": "manual_birtinya_setup",
+  "landmark": "USC (University of Sunshine Coast), Stockland Birtinya",
+  "area_info": {
+    "council": "Sunshine Coast Regional Council",
+    "region": "Sunshine Coast",
+    "nearby_landmarks": [
+      "University of Sunshine Coast (USC)",
+      "Stockland Birtinya Shopping Centre",
+      "Kawana Hospital",
+      "Birtinya Island",
+      "Lake Kawana"
+    ],
+    "distance_to_brisbane_km": 90,
+    "coastal_location": true
+  }
+}
